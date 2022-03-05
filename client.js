@@ -1,11 +1,8 @@
 $(ready);
-
-let employeeArray = [];
 let totalSalary = 0;
-let counter = 0;
-
 function ready() {
     $('#addButton').on('click', addEmployee);
+    $(`#tableBody`).on('click', '.deleteBtn', deleteEmp);
 }
 
 function addEmployee() {
@@ -14,7 +11,6 @@ function addEmployee() {
     let idNumber = $('#idNumber').val();
     let title = $('#title').val();
     let salary = Number($('#salary').val());
-
     let employeeObject = {
         first: firstName,
         last: lastName,
@@ -23,8 +19,6 @@ function addEmployee() {
         salary: salary
     }
 
-    employeeArray.push(employeeObject);
-
     $('#tableBody').append(`
         <tr>
             <td>${firstName}</td>
@@ -32,26 +26,25 @@ function addEmployee() {
             <td>${idNumber}</td>
             <td>${title}</td>
             <td>${salary}</td>
-            <td><button class="button" id="deleteButton">Delete</button></td>
+            <td><button class="deleteBtn" data-object="${employeeObject.salary}"id="deleteButton">Delete</button></td>
         </tr>`);
 
-    $('#deleteButton').on('click', deleteEmp);
-
-
-    totalSalary += salary;
-    $('#totalSalary').text(totalSalary);
+    totalSal(employeeObject.salary);
 
     $('.input').val('');
 }
 
-function deleteEmp() {
-    $(this).closest('tr').remove();
-    
-    // totalSalary -= employeeArray.salary;
-
+function totalSal(sal) {
+    totalSalary += sal;
     $('#totalSalary').text(totalSalary);
+}
+
+function deleteEmp() {
+    let removed = $(this).data('object');
+
+    totalSal(Number(removed) * -1);
     
-    
+    $(this).closest('tr').remove();
 }
 
 
