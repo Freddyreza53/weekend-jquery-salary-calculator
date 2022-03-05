@@ -36,6 +36,11 @@ function addEmployee() {
 
 function totalSal(sal) {
     totalSalary += sal;
+    if (totalSalary > 20000) {
+        $('#totalSalary').addClass('red');
+    } else {
+        $('#totalSalary').removeClass('red');
+    }
     $('#totalSalary').text(totalSalary);
 }
 
