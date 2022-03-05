@@ -6,21 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="jquery-3.6.0.min.js"></script>
     <script src="client.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <title>Salary Calculator</title>
 </head>
 <body>
-    <header class="allInputs">
+    <header class="top">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNnO5NmjRzhluMt5g4oR3LGepv7l0yRV47I82KPsM0eRnZfOuC8q7F_sHQsm_KGKfIVPo&usqp=CAU" alt="Money Sign">
+        <h1>Salary Calculator</h1>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNnO5NmjRzhluMt5g4oR3LGepv7l0yRV47I82KPsM0eRnZfOuC8q7F_sHQsm_KGKfIVPo&usqp=CAU" alt="Money Sign">
+    </header>
+    <section class="required"></section>
+    
+    <div class="allInputs">
+        <h2>Add Employee: </h2>
         <input class="input" type="text" placeholder="First Name" id="firstName">
         <input class="input" type="text" placeholder="Last Name" id="lastName">
         <input class="input" type="text" placeholder="Employee ID Number" id="idNumber">
         <input class="input" type="text" placeholder="Title" id="title">
         <input class="input" type="text" placeholder="Annual Salary" id="salary">
         <button class="button" id="addButton">Add Employee</button>
-    </header>
-    <main id=".container">
+    </div>
+    <main id="container">
 
-        <table>
+        <table class="table-bordered caption-top">
+            <caption>List of Employees</caption>
             <thead>
                 <tr>
                     <th>First Name</th>
@@ -33,11 +43,11 @@
             </thead>
 
             <tbody id="tableBody"></tbody>
-            
+
             <tfoot>
-                <tr>
-                    <td>Total Salary: <span id="totalSalary">0</span></td>
-                </tr>
+                
+                    <td id="total">Total Salary: <span id="totalSalary">$0.00</span></td>
+                
             </tfoot>
         </table>
 
