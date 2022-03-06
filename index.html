@@ -22,17 +22,17 @@
         <h2>Add Employee: </h2>
         <input class="input" type="text" placeholder="First Name" id="firstName">
         <input class="input" type="text" placeholder="Last Name" id="lastName">
-        <input class="input" type="text" placeholder="Employee ID Number" id="idNumber">
+        <input class="input" type="number" placeholder="ID Number" id="idNumber">
         <input class="input" type="text" placeholder="Title" id="title">
-        <input class="input" type="text" placeholder="Annual Salary" id="salary">
-        <button class="button" id="addButton">Add Employee</button>
+        <input class="input" type="number" placeholder="Annual Salary" id="salary">
+        <button class="button" id="addButton">Add</button>
     </div>
     <main id="container">
 
-        <table class="table-bordered caption-top">
+        <table class="table-bordered caption-top ">
             <caption>List of Employees</caption>
             <thead>
-                <tr>
+                <tr class="headRow">
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>ID</th>
@@ -45,12 +45,9 @@
             <tbody id="tableBody"></tbody>
 
             <tfoot>
-                
-                    <td id="total">Total Salary: <span id="totalSalary">$0.00</span></td>
-                
+                <td id="total">Total Monthly Salary: <span id="totalSalary">$0.00</span></td>
             </tfoot>
         </table>
-
     </main>
 </body>
 </html>
