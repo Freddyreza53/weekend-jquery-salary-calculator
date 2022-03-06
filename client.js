@@ -13,52 +13,65 @@ function ready() {
 function addEmployee() {
     let firstName = $('#firstName').val();
     let lastName  = $('#lastName').val();
-    let idNumber  = $('#idNumber').val();
+    let idNumber  = Number($('#idNumber').val());
     let title     = $('#title').val();
     let salary    = Number($('#salary').val());
 
-    if (firstName == '' || lastName == '' || idNumber == '' || title == '' || salary    == '') {
-        $('.required').text('* ALL FIELDS ARE REQUIRED');
-        
-        if (firstName == '' ) {
-            $('#firstName').addClass('moreRed')
-        }
-        if (lastName == '' ) {
-            $('#lastName').addClass('moreRed')
-        }
-        if (idNumber == '' ) {
+    if (idNumber < 0 || salary < 0) {
+        $('.required').text('* Must Use Positive Number');
+        if (idNumber < 0) {
             $('#idNumber').addClass('moreRed')
         }
-        if (title == '' ) {
-            $('#title').addClass('moreRed')
-        }
-        if (salary == '' ) {
+        if (salary < 0) {
             $('#salary').addClass('moreRed')
         }
     } else {
-        $('.required').text('');
-        $('#firstName').removeClass('moreRed')
-        $('#lastName').removeClass('moreRed')
-        $('#idNumber').removeClass('moreRed')
-        $('#title').removeClass('moreRed')
-        $('#salary').removeClass('moreRed')
+        if (firstName == '' || lastName == '' || idNumber == '' || title == '' || salary    == '') {
+            $('.required').text('* ALL FIELDS ARE REQUIRED');
+            
+            if (firstName == '' ) {
+                $('#firstName').addClass('moreRed')
+            }
+            if (lastName == '' ) {
+                $('#lastName').addClass('moreRed')
+            }
+            if (idNumber == '' ) {
+                $('#idNumber').addClass('moreRed')
+            }
+            if (title == '' ) {
+                $('#title').addClass('moreRed')
+            }
+            if (salary == '' ) {
+                $('#salary').addClass('moreRed')
+            }
+        } else {
+            $('.required').text('');
+            $('#firstName').removeClass('moreRed')
+            $('#lastName').removeClass('moreRed')
+            $('#idNumber').removeClass('moreRed')
+            $('#title').removeClass('moreRed')
+            $('#salary').removeClass('moreRed')
+    
+            $('#tableBody').append(`
+                <tr>
+                    <td>${firstName}</td>
+                    <td>${lastName}</td>
+                    <td>${idNumber}</td>
+                    <td>${title}</td>
+                    <td>${dollarUS.format(salary)}</td>
+                    <td>
+                        <button class="deleteBtn" data-object="${salary}"id="deleteButton">Delete</button>
+                    </td>
+                </tr>`);
+    
+            totalSal(salary/12);
+    
+            $('.input').val('');
+        }
 
-        $('#tableBody').append(`
-            <tr>
-                <td>${firstName}</td>
-                <td>${lastName}</td>
-                <td>${idNumber}</td>
-                <td>${title}</td>
-                <td>${dollarUS.format(salary)}</td>
-                <td>
-                    <button class="deleteBtn" data-object="${salary}"id="deleteButton">Delete</button>
-                </td>
-            </tr>`);
-
-        totalSal(salary/12);
-
-        $('.input').val('');
     }
+
+    
 }
 
 function totalSal(sal) {
