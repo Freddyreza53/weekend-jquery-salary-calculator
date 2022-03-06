@@ -18,7 +18,8 @@ function addEmployee() {
     let salary    = Number($('#salary').val());
 
     if (firstName == '' || lastName == '' || idNumber == '' || title == '' || salary    == '') {
-        $('.required').append('* ALL FIELDS ARE REQUIRED');
+        $('.required').text('* ALL FIELDS ARE REQUIRED');
+        
         if (firstName == '' ) {
             $('#firstName').addClass('moreRed')
         }
@@ -42,14 +43,6 @@ function addEmployee() {
         $('#title').removeClass('moreRed')
         $('#salary').removeClass('moreRed')
 
-        let employeeObject = {
-            first: firstName,
-            last: lastName,
-            id: idNumber,
-            title: title,
-            salary: salary
-        }
-
         $('#tableBody').append(`
             <tr>
                 <td>${firstName}</td>
@@ -57,10 +50,12 @@ function addEmployee() {
                 <td>${idNumber}</td>
                 <td>${title}</td>
                 <td>${dollarUS.format(salary)}</td>
-                <td><button class="deleteBtn" data-object="${employeeObject.salary}"id="deleteButton">Delete</button></td>
+                <td>
+                    <button class="deleteBtn" data-object="${salary}"id="deleteButton">Delete</button>
+                </td>
             </tr>`);
 
-        totalSal(employeeObject.salary/12);
+        totalSal(salary/12);
 
         $('.input').val('');
     }
@@ -84,6 +79,3 @@ function deleteEmp() {
     
     $(this).closest('tr').remove();
 }
-
-
-
