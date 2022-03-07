@@ -11,6 +11,12 @@ function ready() {
 }
 
 function addEmployee() {
+    $('#idNumber').removeClass('moreRed')
+    $('#salary').removeClass('moreRed')
+    $('#firstName').removeClass('moreRed')
+    $('#lastName').removeClass('moreRed')
+    $('#title').removeClass('moreRed')
+
     let firstName = $('#firstName').val();
     let lastName  = $('#lastName').val();
     let idNumber  = Number($('#idNumber').val());
